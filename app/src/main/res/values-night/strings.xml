@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enable_location_services_for_a_more_accurate_pickup_experience">Enable location service to access more relavent hotels</string>
+    <string name="turn_on_location_services">"Turn on the location "</string>
+</resources>

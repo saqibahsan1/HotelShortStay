@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686020983486",
+    "project_id": "short-stay-f7f06",
+    "storage_bucket": "short-stay-f7f06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686020983486:android:89905db80fa0e587fd3cef",
+        "android_client_info": {
+          "package_name": "com.shortstay.pk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686020983486-rod3rfcn9d6ks5heq9chiba4a29jbdsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhlGEYGpgj1t_-Et0R1Y9BV4u-S3BpIM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686020983486-rod3rfcn9d6ks5heq9chiba4a29jbdsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

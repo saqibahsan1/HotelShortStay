@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Short Stay</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome_title">Welcome!</string>
+    <string name="signup_failed">SignUp Failed</string>
+    <string name="login">LOGIN</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="forgot_your_password">Forgot your password ?</string>
+    <string name="go">GO</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="next">NEXT</string>
+    <string name="register">REGISTER</string>
+    <string name="field_empty_error">This field is required</string>
+    <string name="passwordNotMatched">Password is not matched</string>
+    <string name="location_access">Location Access</string>
+    <string name="shortStay">Short stay wants to access your location</string>
+    <string name="enable_location_services_for_a_more_accurate_pickup_experience">Enable location service to access more relevant hotels in your surroundings</string>
+    <string name="turn_on_location_services">"Turn on the location "</string>
+    <string name="mobile">Mobile</string>
+    <string name="registered_successfully">"Registered successfully please login to proceed further "</string>
+    <string name="email">Email</string>
+    <string name="validEmail">Please provide valid email</string>
+    <string name="exit">close</string>
+    <string name="profile">profileScreen</string>
+    <string name="hotels">Hotels</string>
+    <string name="counter">1/100</string>
+    <string name="wifi">WIFI</string>
+    <string name="ac">AC</string>
+    <string name="secure_location">Secure Location</string>
+    <string name="breakfast">BreakFast</string>
+    <string name="clean_bath">Clean Bath</string>
+</resources>
