@@ -8,6 +8,15 @@
     tools:context=".ui.home.HomeFragment">
 
 
+    <View
+        android:id="@+id/position_view"
+        android:layout_width="1px"
+        android:layout_height="1px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="28dp"
@@ -49,7 +58,7 @@
     </androidx.viewpager.widget.ViewPager>
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/countIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/counter"

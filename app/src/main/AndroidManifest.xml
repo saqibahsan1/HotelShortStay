@@ -27,7 +27,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.ShortStay"/>
+            android:theme="@style/Theme.ShortStay.NoActionBar"/>
         <activity
             android:name=".ui.login.LoginActivity" />
 
