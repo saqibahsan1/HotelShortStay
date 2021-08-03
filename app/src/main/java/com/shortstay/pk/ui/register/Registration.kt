@@ -20,6 +20,7 @@ import com.shortstay.pk.databinding.RegisterActivityBinding
 import com.shortstay.pk.httpclient.ApiClient
 import com.shortstay.pk.httpclient.PARAMETERS
 import com.shortstay.pk.responseModels.SignInResponse
+import com.shortstay.pk.utils.Utils
 import com.shortstay.pk.utils.Utils.hideProgress
 import com.shortstay.pk.utils.Utils.hideStatusBar
 import com.shortstay.pk.utils.Utils.showErrorSnackBar 
@@ -73,8 +74,10 @@ class Registration : AppCompatActivity() {
                 .isNotEmpty() && binding.etEmail.text.toString()
                 .isNotEmpty() && binding.etPassword.text.toString()
                 .isNotEmpty() && binding.etRepeatpassword.text.toString().isNotEmpty()
-        )
+        ) {
+            Utils.hideKeyboard(this)
             callApi()
+        }
     }
 
     private fun callApi() {

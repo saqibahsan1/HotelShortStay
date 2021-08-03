@@ -14,6 +14,7 @@
     <string name="next">NEXT</string>
     <string name="register">REGISTER</string>
     <string name="field_empty_error">This field is required</string>
+    <string name="error">Something went wrong</string>
     <string name="passwordNotMatched">Password is not matched</string>
     <string name="location_access">Location Access</string>
     <string name="shortStay">Short stay wants to access your location</string>
@@ -32,4 +33,10 @@
     <string name="secure_location">Secure Location</string>
     <string name="breakfast">Break-Fast</string>
     <string name="clean_bath">Clean Bath</string>
+    <string name="ratings">Ratings:</string>
+    <string name="description">Description: </string>
+    <string name="total_rooms">Total Rooms:</string>
+    <string name="see_details">See Details</string>
+    <string name="available_rooms">Available Rooms:</string>
+    <string name="_55">55</string>
 </resources>

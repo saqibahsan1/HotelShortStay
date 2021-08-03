@@ -48,4 +48,9 @@
     <style name="Theme.ShortStay.MainTheme">
         <item name="android:navigationBarColor">#00000000</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/bg_color_splash</item>
+        <item name="colorControlActivated">@color/pink</item>
+    </style>
 </resources>

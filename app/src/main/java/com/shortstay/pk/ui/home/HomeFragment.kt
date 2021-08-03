@@ -21,19 +21,17 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader
 import com.shortstay.pk.databinding.FragmentHomeBinding
+import com.shortstay.pk.responseModels.nearbyHotels.Data
 import com.shortstay.pk.ui.CommonFragment
 import com.shortstay.pk.utils.CustomPagerTransformer
+import com.shortstay.pk.utils.Utils
 import java.lang.reflect.Field
-import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -47,28 +45,33 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private lateinit var imageArray : ArrayList<List<String>>
-    private fun init(){
+    private lateinit var hotelObject: ArrayList<Data>
+    private fun init() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.callApi()
-        imageArray = ArrayList()
-        homeViewModel.hotels.observe(viewLifecycleOwner,{
-
-            for (i in it.indices) {
-                imageArray.add(it[i].hotel_images)
-            }
+        hotelObject = ArrayList()
+        homeViewModel.hotels.observe(viewLifecycleOwner, {
+            hotelObject.addAll(it)
             fillViewPager()
+        })
+        homeViewModel.progress.observe(viewLifecycleOwner,{
+            if (it)
+                Utils.showProgress(requireContext())
+            else
+                Utils.hideProgress()
         })
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 activity?.window?.statusBarColor = Color.TRANSPARENT
-                activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                activity?.window?.decorView?.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             } else {
-                activity?.window?.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    )
+                activity?.window?.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                )
             }
         }
         dealStatusBar()
@@ -76,32 +79,39 @@ class HomeFragment : Fragment() {
 
     }
 
+    var size = 0
     private val fragments: ArrayList<CommonFragment> = ArrayList()
     private fun fillViewPager() {
         _binding?.viewpager?.setPageTransformer(false, CustomPagerTransformer(requireActivity()))
-        for (i in imageArray) {
+        for (i in hotelObject) {
             fragments.add(CommonFragment())
         }
-        _binding?.viewpager?.adapter = object : FragmentStatePagerAdapter(activity?.supportFragmentManager!!) {
-            override fun getCount(): Int {
-                return imageArray.size
+        _binding?.viewpager?.adapter =
+            object : FragmentStatePagerAdapter(activity?.supportFragmentManager!!) {
+                override fun getCount(): Int {
+                    return hotelObject.size
+                }
+
+                override fun getItem(position: Int): Fragment {
+                    val fragment: CommonFragment = fragments[position % 10]
+                    fragment.bindData(hotelObject[position].hotel_images[position % hotelObject.size],hotelObject,position)
+                    return fragment
+                }
+
             }
-
-            override fun getItem(position: Int): Fragment {
-                val fragment: CommonFragment = fragments[position % 10]
-                fragment.bindData(imageArray[0][position % imageArray.size])
-                return fragment
-            }
-
-        }
-
-
 
         _binding?.viewpager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-           override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-            override  fun onPageSelected(position: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
                 updateIndicatorTv()
             }
+
             override fun onPageScrollStateChanged(state: Int) {}
         })
         updateIndicatorTv()
@@ -161,8 +171,10 @@ class HomeFragment : Fragment() {
     private fun updateIndicatorTv() {
         val totalNum: Int? = _binding?.viewpager?.adapter?.count
         val currentItem: Int? = _binding?.viewpager?.currentItem?.plus(1)
-        _binding?.countIndicator?.text = Html.fromHtml("<font color='#12edf0'>$currentItem</font>  /  $totalNum")
+        _binding?.countIndicator?.text =
+            Html.fromHtml("<font color='#12edf0'>$currentItem</font>  /  $totalNum")
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

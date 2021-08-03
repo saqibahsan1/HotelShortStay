@@ -14,6 +14,7 @@ import com.shortstay.pk.responseModels.SignInResponse
 import com.shortstay.pk.ui.LocationErrorActivity
 import com.shortstay.pk.ui.register.Registration
 import com.shortstay.pk.utils.SharedPreference
+import com.shortstay.pk.utils.Utils
 import com.shortstay.pk.utils.Utils.checkPermission
 import com.shortstay.pk.utils.Utils.gpsCheck
 import com.shortstay.pk.utils.Utils.hideProgress
@@ -101,6 +102,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onLoginClick(view: View) {
+        Utils.hideKeyboard(this)
         if (binding.etUsername.text.toString().isEmpty())
             binding.etUsername.error = getString(R.string.field_empty_error)
         if (binding.etPassword.text.toString().isEmpty())
