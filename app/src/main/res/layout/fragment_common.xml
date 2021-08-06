@@ -184,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:alpha="0.5"
+                android:background="@drawable/bg_overlay"
                 android:padding="5dp">
 
                 <TextView

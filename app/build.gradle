@@ -99,5 +99,6 @@ dependencies {
 
     //image Loader
     implementation ('com.nostra13.universalimageloader:universal-image-loader:1.9.5')
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
 }
