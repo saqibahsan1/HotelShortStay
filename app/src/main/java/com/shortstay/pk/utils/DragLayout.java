@@ -287,6 +287,6 @@ public class DragLayout extends FrameLayout {
     }
 
     public interface GotoDetailListener {
-        public void gotoDetail();
+        void gotoDetail();
     }
 }

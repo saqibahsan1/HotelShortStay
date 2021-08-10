@@ -16,9 +16,9 @@ import java.util.*
 
 class HotelImagesAdapter(private val context: Context) :
     SliderViewAdapter<HotelImagesAdapter.SliderAdapterVH?>() {
-    private val mSliderItems: List<SliderItem> = ArrayList<SliderItem>()
+    private var mSliderItems: List<SliderItem> = ArrayList<SliderItem>()
     override fun onCreateViewHolder(parent: ViewGroup): SliderAdapterVH {
-        val inflate: View = LayoutInflater.from(parent.getContext())
+        val inflate: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.image_slider_layout_item, null)
         return SliderAdapterVH(inflate)
     }
@@ -39,6 +39,11 @@ class HotelImagesAdapter(private val context: Context) :
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    fun hotelSliderItems(sliderItems: List<SliderItem>) {
+        this.mSliderItems = sliderItems
+        notifyDataSetChanged()
     }
 
     override fun getCount(): Int {

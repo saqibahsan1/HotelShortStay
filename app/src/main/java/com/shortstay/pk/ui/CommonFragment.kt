@@ -1,19 +1,24 @@
 package com.shortstay.pk.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
-import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.shortstay.pk.R
 import com.shortstay.pk.databinding.FragmentCommonBinding
 import com.shortstay.pk.responseModels.nearbyHotels.Data
+import com.shortstay.pk.ui.hotel.HotelDetails
+import com.shortstay.pk.utils.DataProvider
 import com.shortstay.pk.utils.DragLayout
-import java.text.FieldPosition
 
 class CommonFragment : Fragment(), DragLayout.GotoDetailListener {
 
@@ -54,13 +59,30 @@ class CommonFragment : Fragment(), DragLayout.GotoDetailListener {
         commonBinding?.hotelDescription?.text = hotels[position!!].hotel_descriptions
         commonBinding?.rating?.rating = hotels[position!!].rating.toFloat()
 
+        dragLayout.setGotoDetailListener(this)
+
     }
 
     private var imageUrl: String? = null
     private var position: Int? = null
     private lateinit var hotels: ArrayList<Data>
+
     override fun gotoDetail() {
-        TODO("Not yet implemented")
+        val activity = context as Activity?
+        val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity!!,
+            Pair(imageView, HotelDetails.IMAGE_TRANSITION_NAME),
+            Pair(name, HotelDetails.ADDRESS1_TRANSITION_NAME),
+            Pair(address2, HotelDetails.ADDRESS2_TRANSITION_NAME),
+            Pair(address3, HotelDetails.ADDRESS3_TRANSITION_NAME),
+            Pair(address4, HotelDetails.ADDRESS4_TRANSITION_NAME),
+            Pair(address5, HotelDetails.ADDRESS5_TRANSITION_NAME),
+            Pair(ratingBar, HotelDetails.RATINGBAR_TRANSITION_NAME)
+        )
+        val intent = Intent(activity, HotelDetails::class.java)
+        DataProvider.data = hotels[position!!]
+        intent.putExtra(HotelDetails.EXTRA_IMAGE_URL, imageUrl)
+        ActivityCompat.startActivity(activity, intent, options.toBundle())
     }
 
     fun bindData(imageUrl: String?, mHotels: List<Data>, position: Int?) {

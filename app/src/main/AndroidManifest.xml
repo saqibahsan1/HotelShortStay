@@ -28,6 +28,10 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.ShortStay.NoActionBar"/>
+
+        <activity
+            android:name=".ui.hotel.HotelDetails"
+            android:theme="@style/Theme.ShortStay.NoActionBar"/>
         <activity
             android:name=".ui.login.LoginActivity" />
 
